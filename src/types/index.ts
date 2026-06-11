@@ -6,19 +6,19 @@ export interface Campaign {
   status: 'Draft' | 'Active' | 'Paused' | 'Completed';
   budget: number;
   spent: number;
-  reach: number;
-  clicks: number;
-  conversions: number;
-  ctr: number;
   roi: number;
   startDate: string;
   endDate: string;
-  targetLocation: string;
-  targetAgeGroup: string;
-  targetInterests: string[];
-  adHeadline: string;
-  adDescription: string;
-  ctaButtonText: string;
+  reach?: number;
+  conversions?: number;
+  clicks?: number;
+  ctr?: number;
+  targetLocation?: string;
+  targetAgeGroup?: string;
+  targetInterests?: string[];
+  adHeadline?: string;
+  adDescription?: string;
+  ctaText?: string;
 }
 
 export interface AnalyticsData {

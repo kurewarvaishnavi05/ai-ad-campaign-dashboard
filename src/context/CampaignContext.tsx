@@ -1,10 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
-import { Campaign } from '../types';
+import { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
+import type { Campaign } from '../types';
 import { mockCampaigns } from '../data/mockData';
 
 interface CampaignContextType {
   campaigns: Campaign[];
-  addCampaign: (campaign: Omit<Campaign, 'id' | 'spent' | 'roi' | 'conversions' | 'clicks'>) => void;
+  addCampaign: (campaign: Partial<Campaign> & Pick<Campaign, 'name' | 'goal' | 'platform'>) => void;
   deleteCampaign: (id: string) => void;
   toggleCampaignStatus: (id: string) => void;
 }
@@ -14,14 +15,26 @@ const CampaignContext = createContext<CampaignContextType | undefined>(undefined
 export function CampaignProvider({ children }: { children: ReactNode }) {
   const [campaigns, setCampaigns] = useState<Campaign[]>(mockCampaigns);
 
-  const addCampaign = (newCampaignData: Omit<Campaign, 'id' | 'spent' | 'roi' | 'conversions' | 'clicks'>) => {
+  const addCampaign = (newCampaignData: Partial<Campaign> & Pick<Campaign, 'name' | 'goal' | 'platform'>) => {
     const newCampaign: Campaign = {
+      status: 'Active',
+      budget: 0,
+      startDate: new Date().toISOString().split('T')[0],
+      endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       ...newCampaignData,
       id: `cmp-${Math.random().toString(36).substr(2, 9)}`,
       spent: 0,
       roi: 0,
       conversions: 0,
       clicks: 0,
+      reach: 0,
+      ctr: 0,
+      targetLocation: 'Global',
+      targetAgeGroup: '18-65+',
+      targetInterests: [],
+      adHeadline: '',
+      adDescription: '',
+      ctaText: 'Learn More',
     };
     setCampaigns(prev => [newCampaign, ...prev]);
   };

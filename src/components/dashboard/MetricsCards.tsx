@@ -1,12 +1,14 @@
 import { Card } from '../ui/Card';
-import { mockCampaigns } from '../../data/mockData';
+import { useCampaigns } from '../../context/CampaignContext';
 import { TrendingUp, Users, MousePointerClick, DollarSign, Activity } from 'lucide-react';
 
 export function MetricsCards() {
-  const totalSpent = mockCampaigns.reduce((acc, curr) => acc + curr.spent, 0);
-  const totalReach = mockCampaigns.reduce((acc, curr) => acc + curr.reach, 0);
-  const totalClicks = mockCampaigns.reduce((acc, curr) => acc + curr.clicks, 0);
-  const activeCount = mockCampaigns.filter(c => c.status === 'Active').length;
+  const { campaigns } = useCampaigns();
+  
+  const totalSpent = campaigns.reduce((acc, curr) => acc + curr.spent, 0);
+  const totalReach = campaigns.reduce((acc, curr) => acc + (curr.reach || 0), 0);
+  const totalClicks = campaigns.reduce((acc, curr) => acc + (curr.clicks || 0), 0);
+  const activeCount = campaigns.filter(c => c.status === 'Active').length;
 
   const metrics = [
     { label: 'Total Spent', value: `$${totalSpent.toLocaleString()}`, icon: <DollarSign size={20} />, trend: '+12%', isPositive: true },

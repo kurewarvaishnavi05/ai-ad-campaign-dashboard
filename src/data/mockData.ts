@@ -21,7 +21,7 @@ export const mockCampaigns: Campaign[] = [
     targetInterests: ['Fashion', 'Summer Deals', 'Online Shopping'],
     adHeadline: 'Huge Summer Discounts!',
     adDescription: 'Get up to 50% off on all summer collections. Limited time offer.',
-    ctaButtonText: 'Shop Now',
+    ctaText: 'Shop Now',
   },
   {
     id: 'cmp-002',
@@ -43,7 +43,7 @@ export const mockCampaigns: Campaign[] = [
     targetInterests: ['B2B Marketing', 'SaaS', 'Business Software'],
     adHeadline: 'Automate Your Workflows Today',
     adDescription: 'Discover how our AI-powered OS can save your team 20 hours a week.',
-    ctaButtonText: 'Request Demo',
+    ctaText: 'Get Started',
   },
   {
     id: 'cmp-003',
@@ -65,7 +65,7 @@ export const mockCampaigns: Campaign[] = [
     targetInterests: ['Technology', 'Gadgets', 'AI'],
     adHeadline: 'The Future of Tech is Here',
     adDescription: 'Experience the next generation of smart devices.',
-    ctaButtonText: 'Learn More',
+    ctaText: 'Learn More',
   },
   {
     id: 'cmp-004',
@@ -87,7 +87,7 @@ export const mockCampaigns: Campaign[] = [
     targetInterests: ['Recent Website Visitors'],
     adHeadline: 'You forgot something!',
     adDescription: 'Complete your purchase today and get 10% off.',
-    ctaButtonText: 'Buy Now',
+    ctaText: 'Sign Up',
   },
 ];
 

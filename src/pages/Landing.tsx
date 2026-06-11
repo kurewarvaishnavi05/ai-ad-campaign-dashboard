@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BarChart3, Target, Zap, Bot, Shield, Smartphone } from 'lucide-react';
+import { ArrowRight, BarChart3, Target, Zap, Bot, Shield } from 'lucide-react';
 
 export function Landing() {
   return (
