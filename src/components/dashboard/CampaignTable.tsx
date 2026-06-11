@@ -1,15 +1,19 @@
+import { useState } from 'react';
 import { Card } from '../ui/Card';
-import { mockCampaigns } from '../../data/mockData';
+import { useCampaigns } from '../../context/CampaignContext';
 import { MoreVertical, Play, Pause, Edit3, Trash2, Search, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function CampaignTable() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('All');
+  const { campaigns, deleteCampaign, toggleCampaignStatus } = useCampaigns();
 
-  const filteredCampaigns = mockCampaigns.filter(c => 
-    c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.platform.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCampaigns = campaigns.filter(c => {
+    const matchesSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase()) || c.platform.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'All' || c.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <Card className="overflow-hidden" delay={0.6}>
@@ -26,7 +30,11 @@ export function CampaignTable() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <select className="bg-white border border-cardBorder text-text text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary shadow-sm">
+          <select 
+            className="bg-white border border-cardBorder text-text text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary shadow-sm"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
             <option value="All">All Status</option>
             <option value="Active">Active</option>
             <option value="Paused">Paused</option>
@@ -79,13 +87,21 @@ export function CampaignTable() {
                 </td>
                 <td className="py-4 px-4">
                   <div className="flex items-center justify-center gap-3 text-textMuted opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="p-1 hover:text-primary transition-colors" title={campaign.status === 'Active' ? 'Pause' : 'Resume'}>
+                    <button 
+                      onClick={() => toggleCampaignStatus(campaign.id)}
+                      className="p-1 hover:text-primary transition-colors" 
+                      title={campaign.status === 'Active' ? 'Pause' : 'Resume'}
+                    >
                       {campaign.status === 'Active' ? <Pause size={16} /> : <Play size={16} />}
                     </button>
                     <button className="p-1 hover:text-primary transition-colors" title="Edit">
                       <Edit3 size={16} />
                     </button>
-                    <button className="p-1 hover:text-danger transition-colors" title="Delete">
+                    <button 
+                      onClick={() => deleteCampaign(campaign.id)}
+                      className="p-1 hover:text-danger transition-colors" 
+                      title="Delete"
+                    >
                       <Trash2 size={16} />
                     </button>
                     <button className="p-1 hover:text-text transition-colors">
@@ -109,7 +125,7 @@ export function CampaignTable() {
             </div>
             <h3 className="text-lg font-bold text-text mb-1">No campaigns found</h3>
             <p className="text-textMuted text-sm max-w-sm mb-6">We couldn't find any campaigns matching your search criteria. Try adjusting your filters or create a new campaign.</p>
-            <button className="btn-secondary text-sm">Clear Search</button>
+            <button onClick={() => { setSearchTerm(''); setStatusFilter('All'); }} className="btn-secondary text-sm">Clear Search</button>
           </motion.div>
         )}
       </div>

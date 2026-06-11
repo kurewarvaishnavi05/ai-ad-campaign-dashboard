@@ -32,7 +32,7 @@ export function Landing() {
               Start Your Free Trial
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <button className="btn-secondary text-lg px-8 py-4 w-full sm:w-auto bg-white border border-cardBorder">
+            <button onClick={() => alert("Thanks for your interest! We'll be in touch to schedule your demo.")} className="btn-secondary text-lg px-8 py-4 w-full sm:w-auto bg-white border border-cardBorder">
               Book a Demo
             </button>
           </div>
@@ -127,7 +127,7 @@ function PricingCard({ title, price, features, isPopular }: { title: string, pri
           </li>
         ))}
       </ul>
-      <button className={isPopular ? 'btn-primary w-full' : 'btn-secondary w-full'}>Get Started</button>
+      <Link to="/login" className={`block text-center ${isPopular ? 'btn-primary w-full' : 'btn-secondary w-full'}`}>Get Started</Link>
     </motion.div>
   );
 }

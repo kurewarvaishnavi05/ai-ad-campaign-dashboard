@@ -1,16 +1,40 @@
 import { useState } from 'react';
 import { X, CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCampaigns } from '../../context/CampaignContext';
 
 interface CampaignModalProps {
   onClose: () => void;
 }
 
 export function CampaignModal({ onClose }: CampaignModalProps) {
+  const { addCampaign } = useCampaigns();
   const [step, setStep] = useState(1);
+
+  // Form State
+  const [name, setName] = useState('');
+  const [goal, setGoal] = useState<'Brand Awareness' | 'Website Traffic' | 'Lead Generation' | 'Sales'>('Brand Awareness');
+  const [platform, setPlatform] = useState<'Google Ads' | 'Facebook Ads' | 'Instagram Ads' | 'LinkedIn Ads'>('Google Ads');
+  const [dailyBudget, setDailyBudget] = useState('');
+  const [totalBudget, setTotalBudget] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const nextStep = () => setStep(s => Math.min(s + 1, 3));
   const prevStep = () => setStep(s => Math.max(s - 1, 1));
+
+  const handleLaunch = () => {
+    addCampaign({
+      name: name || 'Untitled Campaign',
+      goal,
+      platform,
+      status: 'Active',
+      budget: Number(totalBudget) || 0,
+      startDate: startDate || new Date().toISOString().split('T')[0],
+      endDate: endDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    });
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
@@ -61,17 +85,24 @@ export function CampaignModal({ onClose }: CampaignModalProps) {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
               className="space-y-6"
+              onSubmit={(e) => e.preventDefault()}
             >
               {step === 1 && (
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-textMuted mb-1.5">Campaign Name</label>
-                    <input type="text" className="input-field" placeholder="e.g. Summer Sale 2026" />
+                    <input 
+                      type="text" 
+                      className="input-field" 
+                      placeholder="e.g. Summer Sale 2026" 
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                    />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-textMuted mb-1.5">Campaign Goal</label>
-                      <select className="input-field">
+                      <select className="input-field" value={goal} onChange={e => setGoal(e.target.value as any)}>
                         <option>Brand Awareness</option>
                         <option>Website Traffic</option>
                         <option>Lead Generation</option>
@@ -80,7 +111,7 @@ export function CampaignModal({ onClose }: CampaignModalProps) {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-textMuted mb-1.5">Platform</label>
-                      <select className="input-field">
+                      <select className="input-field" value={platform} onChange={e => setPlatform(e.target.value as any)}>
                         <option>Google Ads</option>
                         <option>Facebook Ads</option>
                         <option>Instagram Ads</option>
@@ -96,19 +127,19 @@ export function CampaignModal({ onClose }: CampaignModalProps) {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-textMuted mb-1.5">Daily Budget ($)</label>
-                      <input type="number" className="input-field" placeholder="0.00" />
+                      <input type="number" className="input-field" placeholder="0.00" value={dailyBudget} onChange={e => setDailyBudget(e.target.value)} />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-textMuted mb-1.5">Total Budget ($)</label>
-                      <input type="number" className="input-field" placeholder="0.00" />
+                      <input type="number" className="input-field" placeholder="0.00" value={totalBudget} onChange={e => setTotalBudget(e.target.value)} />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-textMuted mb-1.5">Start Date</label>
-                      <input type="date" className="input-field text-textMuted" />
+                      <input type="date" className="input-field text-textMuted" value={startDate} onChange={e => setStartDate(e.target.value)} />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-textMuted mb-1.5">End Date</label>
-                      <input type="date" className="input-field text-textMuted" />
+                      <input type="date" className="input-field text-textMuted" value={endDate} onChange={e => setEndDate(e.target.value)} />
                     </div>
                   </div>
                 </div>
@@ -140,7 +171,7 @@ export function CampaignModal({ onClose }: CampaignModalProps) {
           </button>
           
           <button 
-            onClick={step === 3 ? onClose : nextStep}
+            onClick={step === 3 ? handleLaunch : nextStep}
             className="btn-primary shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center gap-2"
           >
             {step === 3 ? 'Launch Campaign' : 'Continue'}
