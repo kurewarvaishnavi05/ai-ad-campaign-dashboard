@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { User, Bell, Lock, Shield, Mail } from 'lucide-react';
 
 export function Settings() {
   const [activeTab, setActiveTab] = useState('profile');
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const tabs = [
     { id: 'profile', label: 'Profile Settings', icon: <User size={18} /> },
     { id: 'notifications', label: 'Notifications', icon: <Bell size={18} /> },
     { id: 'security', label: 'Security', icon: <Lock size={18} /> },
   ];
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setAvatarUrl(url);
+    }
+  };
 
   return (
     <motion.div 
@@ -50,11 +60,27 @@ export function Settings() {
               <h2 className="text-xl font-bold text-text mb-6">Profile Information</h2>
               
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 bg-primary/20 text-primary rounded-full flex items-center justify-center text-2xl font-bold">
-                  BL
+                <div className="w-20 h-20 bg-primary/20 text-primary rounded-full flex items-center justify-center text-2xl font-bold overflow-hidden shadow-inner">
+                  {avatarUrl ? (
+                    <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    'BL'
+                  )}
                 </div>
                 <div>
-                  <button className="btn-secondary text-sm">Change Avatar</button>
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    className="hidden" 
+                    ref={fileInputRef} 
+                    onChange={handleFileChange}
+                  />
+                  <button 
+                    onClick={() => fileInputRef.current?.click()}
+                    className="btn-secondary text-sm"
+                  >
+                    Change Avatar
+                  </button>
                   <p className="text-xs text-textMuted mt-2">JPG, GIF or PNG. 1MB max.</p>
                 </div>
               </div>

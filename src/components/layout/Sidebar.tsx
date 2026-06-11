@@ -1,14 +1,12 @@
-import { LayoutDashboard, Megaphone, BarChart3, Settings as SettingsIcon } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { LayoutDashboard, BarChart3, Settings as SettingsIcon, Zap } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
 
 export function Sidebar() {
-  const location = useLocation();
-  
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/dashboard' },
-    { icon: <Megaphone size={20} />, label: 'Campaigns', path: '#' },
-    { icon: <BarChart3 size={20} />, label: 'Analytics', path: '#' },
-    { icon: <SettingsIcon size={20} />, label: 'Settings', path: '/settings' },
+    { icon: <BarChart3 size={20} />, label: 'Analytics', path: '/dashboard/analytics' },
+    { icon: <Zap size={20} />, label: 'Automations', path: '#' },
+    { icon: <SettingsIcon size={20} />, label: 'Settings', path: '/dashboard/settings' },
   ];
 
   return (
@@ -24,20 +22,22 @@ export function Sidebar() {
       
       <nav className="flex-1 px-4 py-4 space-y-1">
         {menuItems.map((item, index) => {
-          const isActive = location.pathname === item.path || (item.path === '#' && index === 1); // Mock active state for demo
           return (
-            <Link
+            <NavLink
               key={index}
               to={item.path}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                isActive
-                  ? 'bg-primary/10 text-primary border border-primary/20 shadow-[inset_0_0_10px_rgba(16,185,129,0.1)]'
-                  : 'text-textMuted hover:bg-slate-50 hover:text-text'
-              }`}
+              end={item.path === '/dashboard'}
+              className={({ isActive }) =>
+                `w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
+                  isActive 
+                    ? 'bg-primary/10 text-primary font-semibold' 
+                    : 'text-textMuted hover:bg-slate-50 hover:text-text'
+                }`
+              }
             >
               {item.icon}
               {item.label}
-            </Link>
+            </NavLink>
           );
         })}
       </nav>

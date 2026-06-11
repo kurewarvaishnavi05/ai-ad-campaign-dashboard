@@ -101,6 +101,14 @@ export const mockAnalyticsData: AnalyticsData[] = [
   { date: 'Sun', budgetSpend: 600, reach: 31000, clicks: 2400, conversions: 132, roi: 230, sales: 13200 },
 ];
 
+export const mockAudienceData = [
+  { name: '18-24', value: 25 },
+  { name: '25-34', value: 40 },
+  { name: '35-44', value: 20 },
+  { name: '45-54', value: 10 },
+  { name: '55+', value: 5 },
+];
+
 export const mockAIRecommendations: AIRecommendation[] = [
   {
     id: 'rec-001',
