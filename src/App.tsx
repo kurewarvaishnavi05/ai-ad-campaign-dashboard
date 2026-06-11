@@ -2,10 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { Dashboard } from './pages/Dashboard';
-import { Settings } from './pages/Settings';
 import { Analytics } from './pages/Analytics';
 import { Landing } from './pages/Landing';
-import { Login } from './pages/Login';
 import { CampaignProvider } from './context/CampaignContext';
 import './App.css';
 
@@ -21,8 +19,6 @@ function App() {
           } />
           <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
           <Route path="/dashboard/analytics" element={<Layout><Analytics /></Layout>} />
-          <Route path="/dashboard/settings" element={<Layout><Settings /></Layout>} />
-          <Route path="/login" element={<Login />} />
           {/* Fallback route */}
           <Route path="*" element={<Landing />} />
         </Routes>

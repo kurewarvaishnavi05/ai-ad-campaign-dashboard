@@ -127,7 +127,7 @@ function PricingCard({ title, price, features, isPopular }: { title: string, pri
           </li>
         ))}
       </ul>
-      <Link to="/login" className={`block text-center ${isPopular ? 'btn-primary w-full' : 'btn-secondary w-full'}`}>Get Started</Link>
+      <Link to="/dashboard" className={`block text-center ${isPopular ? 'btn-primary w-full' : 'btn-secondary w-full'}`}>Get Started</Link>
     </motion.div>
   );
 }

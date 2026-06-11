@@ -14,6 +14,26 @@ export function Analytics() {
   const totalSales = mockAnalyticsData.reduce((acc, curr) => acc + curr.sales, 0);
   const avgROI = Math.round(mockAnalyticsData.reduce((acc, curr) => acc + curr.roi, 0) / mockAnalyticsData.length);
 
+  const handleExport = () => {
+    const headers = ['Date', 'Budget Spend', 'Reach', 'Clicks', 'Conversions', 'ROI (%)', 'Sales ($)'];
+    const csvContent = [
+      headers.join(','),
+      ...mockAnalyticsData.map(row => 
+        [row.date, row.budgetSpend, row.reach, row.clicks, row.conversions, row.roi, row.sales].join(',')
+      )
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'analytics_report.csv');
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -22,7 +42,7 @@ export function Analytics() {
     >
       <div className="flex justify-between items-center mb-2">
         <h1 className="text-3xl font-bold text-text">Analytics Overview</h1>
-        <button className="btn-secondary">Export Report</button>
+        <button onClick={handleExport} className="btn-secondary">Export Report</button>
       </div>
 
       <p className="text-textMuted mb-6">Deep dive into your campaign performance across all platforms.</p>

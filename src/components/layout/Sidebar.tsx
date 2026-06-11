@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, Settings as SettingsIcon, Zap } from 'lucide-react';
+import { LayoutDashboard, BarChart3, Zap } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 
 export function Sidebar() {
@@ -6,7 +6,6 @@ export function Sidebar() {
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/dashboard' },
     { icon: <BarChart3 size={20} />, label: 'Analytics', path: '/dashboard/analytics' },
     { icon: <Zap size={20} />, label: 'Automations', path: '#' },
-    { icon: <SettingsIcon size={20} />, label: 'Settings', path: '/dashboard/settings' },
   ];
 
   return (
@@ -42,19 +41,6 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t border-cardBorder">
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors border border-transparent hover:border-cardBorder">
-          <img
-            src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
-            alt="User"
-            className="w-9 h-9 rounded-full ring-2 ring-primary/50"
-          />
-          <div className="text-sm">
-            <p className="font-medium text-text">Admin User</p>
-            <p className="text-textMuted text-xs">admin@bizleap.com</p>
-          </div>
-        </div>
-      </div>
     </aside>
   );
 }

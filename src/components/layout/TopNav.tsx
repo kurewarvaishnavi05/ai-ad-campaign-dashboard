@@ -18,9 +18,8 @@ export function TopNav() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link to="/login" className="text-sm font-bold text-text hover:text-primary transition-colors hidden sm:block">Log In</Link>
           <Link to="/dashboard" className="btn-primary py-2 px-6 shadow-md hover:shadow-lg">
-            Start Free Trial
+            Dashboard
           </Link>
         </div>
       </div>
