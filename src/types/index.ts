@@ -27,6 +27,8 @@ export interface AnalyticsData {
   reach: number;
   clicks: number;
   conversions: number;
+  roi: number;
+  sales: number;
 }
 
 export interface AIRecommendation {

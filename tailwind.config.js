@@ -4,21 +4,22 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: '#f8fafc', // slate-50
-        card: '#ffffff', // white
-        cardBorder: '#e2e8f0', // slate-200
-        text: '#0f172a', // slate-900
-        textMuted: '#64748b', // slate-500
-        primary: '#10b981', // emerald-500
-        primaryHover: '#059669', // emerald-600
-        primaryLight: 'rgba(16, 185, 129, 0.1)',
-        secondary: '#f1f5f9', // slate-100
-        accent: '#0d9488', // teal-600
-        danger: '#ef4444', // red-500
-        warning: '#f59e0b', // amber-500
+        background: 'var(--color-bg)',
+        card: 'var(--color-card)',
+        cardBorder: 'var(--color-card-border)',
+        text: 'var(--color-text)',
+        textMuted: 'var(--color-text-muted)',
+        primary: 'var(--color-primary)',
+        primaryHover: 'var(--color-primary-hover)',
+        primaryLight: 'var(--color-primary-light)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        danger: 'var(--color-danger)',
+        warning: 'var(--color-warning)',
       },
       fontFamily: {
         sans: ['Outfit', 'system-ui', 'sans-serif'],

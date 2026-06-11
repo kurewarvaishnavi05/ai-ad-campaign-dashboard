@@ -2,14 +2,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { Dashboard } from './pages/Dashboard';
+import { Settings } from './pages/Settings';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { CampaignProvider } from './context/CampaignContext';
+import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
 function App() {
   return (
-    <CampaignProvider>
+    <ThemeProvider>
+      <CampaignProvider>
       <Router>
         <Routes>
           <Route path="/" element={
@@ -22,12 +25,18 @@ function App() {
               <Dashboard />
             </Layout>
           } />
+          <Route path="/settings" element={
+            <Layout>
+              <Settings />
+            </Layout>
+          } />
           <Route path="/login" element={<Login />} />
           {/* Fallback route */}
           <Route path="*" element={<Landing />} />
         </Routes>
       </Router>
     </CampaignProvider>
+    </ThemeProvider>
   );
 }
 

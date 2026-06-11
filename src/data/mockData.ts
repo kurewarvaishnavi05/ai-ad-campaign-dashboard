@@ -92,13 +92,13 @@ export const mockCampaigns: Campaign[] = [
 ];
 
 export const mockAnalyticsData: AnalyticsData[] = [
-  { date: 'Jun 1', budgetSpend: 450, reach: 25000, clicks: 1200, conversions: 45 },
-  { date: 'Jun 2', budgetSpend: 480, reach: 27000, clicks: 1350, conversions: 52 },
-  { date: 'Jun 3', budgetSpend: 510, reach: 28500, clicks: 1420, conversions: 58 },
-  { date: 'Jun 4', budgetSpend: 490, reach: 26000, clicks: 1280, conversions: 48 },
-  { date: 'Jun 5', budgetSpend: 530, reach: 31000, clicks: 1600, conversions: 65 },
-  { date: 'Jun 6', budgetSpend: 560, reach: 33500, clicks: 1750, conversions: 72 },
-  { date: 'Jun 7', budgetSpend: 600, reach: 35000, clicks: 1900, conversions: 80 },
+  { date: 'Mon', budgetSpend: 450, reach: 12000, clicks: 800, conversions: 45, roi: 120, sales: 4500 },
+  { date: 'Tue', budgetSpend: 480, reach: 19000, clicks: 1200, conversions: 68, roi: 150, sales: 6800 },
+  { date: 'Wed', budgetSpend: 510, reach: 15000, clicks: 950, conversions: 52, roi: 135, sales: 5200 },
+  { date: 'Thu', budgetSpend: 490, reach: 22000, clicks: 1500, conversions: 89, roi: 180, sales: 8900 },
+  { date: 'Fri', budgetSpend: 530, reach: 28000, clicks: 2100, conversions: 115, roi: 210, sales: 11500 },
+  { date: 'Sat', budgetSpend: 560, reach: 35000, clicks: 2800, conversions: 156, roi: 250, sales: 15600 },
+  { date: 'Sun', budgetSpend: 600, reach: 31000, clicks: 2400, conversions: 132, roi: 230, sales: 13200 },
 ];
 
 export const mockAIRecommendations: AIRecommendation[] = [

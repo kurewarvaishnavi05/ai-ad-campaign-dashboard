@@ -1,4 +1,4 @@
-import { LayoutDashboard, Megaphone, BarChart3, Users, Settings } from 'lucide-react';
+import { LayoutDashboard, Megaphone, BarChart3, Settings as SettingsIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 export function Sidebar() {
@@ -8,8 +8,7 @@ export function Sidebar() {
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/dashboard' },
     { icon: <Megaphone size={20} />, label: 'Campaigns', path: '#' },
     { icon: <BarChart3 size={20} />, label: 'Analytics', path: '#' },
-    { icon: <Users size={20} />, label: 'Audience', path: '#' },
-    { icon: <Settings size={20} />, label: 'Settings', path: '#' },
+    { icon: <SettingsIcon size={20} />, label: 'Settings', path: '/settings' },
   ];
 
   return (
