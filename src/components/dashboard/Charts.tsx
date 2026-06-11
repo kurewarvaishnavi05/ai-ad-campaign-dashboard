@@ -14,22 +14,22 @@ export function Charts() {
         </h2>
         
         <div className="flex items-center gap-4 w-full sm:w-auto">
-          <div className="bg-slate-100 dark:bg-slate-800 p-1 rounded-lg flex gap-1">
+          <div className="bg-slate-100 p-1 rounded-lg flex gap-1 border border-cardBorder shadow-inner">
             <button 
               onClick={() => setActiveTab('reach')}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${activeTab === 'reach' ? 'bg-white dark:bg-slate-700 text-text shadow-sm' : 'text-textMuted hover:text-text'}`}
+              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'reach' ? 'bg-white text-primary shadow-sm ring-1 ring-cardBorder' : 'text-textMuted hover:text-text hover:bg-white/50'}`}
             >
               Reach & Engagement
             </button>
             <button 
               onClick={() => setActiveTab('roi')}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${activeTab === 'roi' ? 'bg-white dark:bg-slate-700 text-text shadow-sm' : 'text-textMuted hover:text-text'}`}
+              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'roi' ? 'bg-white text-primary shadow-sm ring-1 ring-cardBorder' : 'text-textMuted hover:text-text hover:bg-white/50'}`}
             >
               ROI & Sales
             </button>
           </div>
           
-          <select className="bg-white dark:bg-slate-800 border border-cardBorder text-text text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary shadow-sm hidden sm:block">
+          <select className="bg-white border border-cardBorder text-text text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary shadow-sm hidden sm:block cursor-pointer hover:bg-slate-50 transition-colors">
             <option>Last 7 Days</option>
             <option>Last 30 Days</option>
             <option>This Month</option>
