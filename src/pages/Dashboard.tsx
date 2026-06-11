@@ -3,12 +3,14 @@ import { MetricsCards } from '../components/dashboard/MetricsCards';
 import { Charts } from '../components/dashboard/Charts';
 import { CampaignTable } from '../components/dashboard/CampaignTable';
 import { AIRecommendations } from '../components/dashboard/AIRecommendations';
-import { Plus } from 'lucide-react';
+import { Plus, Sparkles } from 'lucide-react';
 import { CampaignModal } from '../components/dashboard/CampaignModal';
+import { AIAnalyzerModal } from '../components/dashboard/AIAnalyzerModal';
 import { motion } from 'framer-motion';
 
 export function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAnalyzerOpen, setIsAnalyzerOpen] = useState(false);
 
   return (
     <motion.div 
@@ -22,13 +24,22 @@ export function Dashboard() {
           <h1 className="text-2xl font-bold text-text">Campaign Overview</h1>
           <p className="text-textMuted text-sm mt-1">Manage and monitor your advertising performance.</p>
         </div>
-        <button 
-          onClick={() => setIsModalOpen(true)}
-          className="btn-primary flex items-center justify-center gap-2"
-        >
-          <Plus size={18} />
-          New Campaign
-        </button>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setIsAnalyzerOpen(true)}
+            className="btn-secondary flex items-center justify-center gap-2 border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/30"
+          >
+            <Sparkles size={18} />
+            AI Analyzer
+          </button>
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="btn-primary flex items-center justify-center gap-2"
+          >
+            <Plus size={18} />
+            New Campaign
+          </button>
+        </div>
       </div>
 
       <MetricsCards />
@@ -46,6 +57,10 @@ export function Dashboard() {
 
       {isModalOpen && (
         <CampaignModal onClose={() => setIsModalOpen(false)} />
+      )}
+      
+      {isAnalyzerOpen && (
+        <AIAnalyzerModal onClose={() => setIsAnalyzerOpen(false)} />
       )}
     </motion.div>
   );
