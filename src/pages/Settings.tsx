@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Bell, Palette, Lock, Shield, Mail, Monitor, Moon, Sun } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { User, Bell, Lock, Shield, Mail } from 'lucide-react';
 
 export function Settings() {
-  const { theme, setTheme } = useTheme();
   const [activeTab, setActiveTab] = useState('profile');
 
   const tabs = [
     { id: 'profile', label: 'Profile Settings', icon: <User size={18} /> },
-    { id: 'appearance', label: 'Appearance', icon: <Palette size={18} /> },
     { id: 'notifications', label: 'Notifications', icon: <Bell size={18} /> },
     { id: 'security', label: 'Security', icon: <Lock size={18} /> },
   ];
@@ -87,42 +84,7 @@ export function Settings() {
             </div>
           )}
 
-          {/* APPEARANCE SETTINGS */}
-          {activeTab === 'appearance' && (
-            <div className="p-8 space-y-8 animate-fade-in">
-              <h2 className="text-xl font-bold text-text mb-6">Appearance</h2>
-              
-              <div className="space-y-4">
-                <p className="text-sm text-textMuted">Customize the interface theme.</p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <button 
-                    onClick={() => setTheme('light')}
-                    className={`p-4 rounded-xl border-2 flex flex-col items-center gap-3 transition-colors ${theme === 'light' ? 'border-primary bg-primary/5' : 'border-cardBorder bg-card hover:border-slate-300'}`}
-                  >
-                    <Sun size={24} className={theme === 'light' ? 'text-primary' : 'text-textMuted'} />
-                    <span className={`font-medium ${theme === 'light' ? 'text-primary' : 'text-text'}`}>Light Mode</span>
-                  </button>
 
-                  <button 
-                    onClick={() => setTheme('dark')}
-                    className={`p-4 rounded-xl border-2 flex flex-col items-center gap-3 transition-colors ${theme === 'dark' ? 'border-primary bg-primary/5' : 'border-cardBorder bg-card hover:border-slate-600'}`}
-                  >
-                    <Moon size={24} className={theme === 'dark' ? 'text-primary' : 'text-textMuted'} />
-                    <span className={`font-medium ${theme === 'dark' ? 'text-primary' : 'text-text'}`}>Dark Mode</span>
-                  </button>
-
-                  <button 
-                    onClick={() => setTheme('system')}
-                    className={`p-4 rounded-xl border-2 flex flex-col items-center gap-3 transition-colors ${theme === 'system' ? 'border-primary bg-primary/5' : 'border-cardBorder bg-card hover:border-slate-400'}`}
-                  >
-                    <Monitor size={24} className={theme === 'system' ? 'text-primary' : 'text-textMuted'} />
-                    <span className={`font-medium ${theme === 'system' ? 'text-primary' : 'text-text'}`}>System Auto</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* NOTIFICATIONS SETTINGS */}
           {activeTab === 'notifications' && (

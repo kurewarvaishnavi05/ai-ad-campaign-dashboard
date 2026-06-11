@@ -6,13 +6,11 @@ import { Settings } from './pages/Settings';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { CampaignProvider } from './context/CampaignContext';
-import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
 function App() {
   return (
-    <ThemeProvider>
-      <CampaignProvider>
+    <CampaignProvider>
       <Router>
         <Routes>
           <Route path="/" element={
@@ -36,7 +34,6 @@ function App() {
         </Routes>
       </Router>
     </CampaignProvider>
-    </ThemeProvider>
   );
 }
 
