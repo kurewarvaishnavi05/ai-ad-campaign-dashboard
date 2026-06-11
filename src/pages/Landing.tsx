@@ -46,7 +46,7 @@ export function Landing() {
           className="mt-20 w-full max-w-5xl mx-auto relative perspective-1000"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10 bottom-0 h-32 top-auto"></div>
-          <div className="glass-card p-2 rounded-t-3xl border-b-0 border-x border-t shadow-2xl bg-white/80">
+          <div className="glass-card p-2 rounded-t-3xl border-b-0 border-x border-t shadow-2xl bg-card/80">
              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000" alt="Dashboard Preview" className="w-full rounded-t-2xl object-cover opacity-90 h-[400px] object-top" />
           </div>
         </motion.div>
@@ -62,28 +62,28 @@ export function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
              {/* Feature 1 - Large */}
-            <motion.div whileHover={{ y: -5 }} className="glass-card md:col-span-2 p-8 flex flex-col justify-end relative bg-white/90 group">
+            <motion.div whileHover={{ y: -5 }} className="glass-card md:col-span-2 p-8 flex flex-col justify-end relative bg-card/90 group">
               <div className="absolute top-6 right-6 p-3 bg-primary/10 rounded-xl text-primary"><Bot size={32} /></div>
               <h3 className="text-2xl font-bold text-text mb-2 group-hover:text-primary transition-colors">AI-Powered Insights</h3>
               <p className="text-textMuted max-w-md">Our neural engine analyzes thousands of ad variations to tell you exactly what converts best before you spend a dime.</p>
             </motion.div>
             
             {/* Feature 2 */}
-            <motion.div whileHover={{ y: -5 }} className="glass-card p-8 flex flex-col justify-end bg-white/90 group">
+            <motion.div whileHover={{ y: -5 }} className="glass-card p-8 flex flex-col justify-end bg-card/90 group">
               <div className="absolute top-6 right-6 p-3 bg-accent/10 rounded-xl text-accent"><BarChart3 size={32} /></div>
               <h3 className="text-xl font-bold text-text mb-2">Real-time Analytics</h3>
               <p className="text-textMuted text-sm">Track every click, conversion, and penny spent in real time.</p>
             </motion.div>
 
             {/* Feature 3 */}
-            <motion.div whileHover={{ y: -5 }} className="glass-card p-8 flex flex-col justify-end bg-white/90 group">
+            <motion.div whileHover={{ y: -5 }} className="glass-card p-8 flex flex-col justify-end bg-card/90 group">
               <div className="absolute top-6 right-6 p-3 bg-purple-500/10 rounded-xl text-purple-500"><Target size={32} /></div>
               <h3 className="text-xl font-bold text-text mb-2">Smart Targeting</h3>
               <p className="text-textMuted text-sm">Find your perfect audience automatically across all platforms.</p>
             </motion.div>
 
             {/* Feature 4 - Large */}
-            <motion.div whileHover={{ y: -5 }} className="glass-card md:col-span-2 p-8 flex flex-col justify-end bg-white/90 group">
+            <motion.div whileHover={{ y: -5 }} className="glass-card md:col-span-2 p-8 flex flex-col justify-end bg-card/90 group">
               <div className="absolute top-6 right-6 p-3 bg-warning/10 rounded-xl text-warning"><Zap size={32} /></div>
               <h3 className="text-2xl font-bold text-text mb-2">One-Click Optimization</h3>
               <p className="text-textMuted max-w-md">Pause underperforming ads and scale winners instantly with our intelligent automation rules.</p>
@@ -115,7 +115,7 @@ function PricingCard({ title, price, features, isPopular }: { title: string, pri
   return (
     <motion.div 
       whileHover={{ y: -10 }} 
-      className={`glass-card p-8 flex flex-col bg-white ${isPopular ? 'border-primary border-2 shadow-xl relative' : ''}`}
+      className={`glass-card p-8 flex flex-col bg-card ${isPopular ? 'border-primary border-2 shadow-xl relative' : ''}`}
     >
       {isPopular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Most Popular</span>}
       <h3 className="text-xl font-bold text-text mb-2">{title}</h3>
