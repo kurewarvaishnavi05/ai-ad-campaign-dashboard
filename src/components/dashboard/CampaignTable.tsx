@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Card } from '../ui/Card';
 import { mockCampaigns } from '../../data/mockData';
-import { MoreVertical, Play, Pause, Edit3, Trash2, Search } from 'lucide-react';
+import { MoreVertical, Play, Pause, Edit3, Trash2, Search, Target } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function CampaignTable() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -99,9 +99,18 @@ export function CampaignTable() {
         </table>
         
         {filteredCampaigns.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-textMuted text-sm">No campaigns found matching your search.</p>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16 flex flex-col items-center justify-center bg-slate-50/50 rounded-b-2xl border-t border-cardBorder"
+          >
+            <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-cardBorder flex items-center justify-center text-slate-300 mb-4">
+              <Target size={32} />
+            </div>
+            <h3 className="text-lg font-bold text-text mb-1">No campaigns found</h3>
+            <p className="text-textMuted text-sm max-w-sm mb-6">We couldn't find any campaigns matching your search criteria. Try adjusting your filters or create a new campaign.</p>
+            <button className="btn-secondary text-sm">Clear Search</button>
+          </motion.div>
         )}
       </div>
     </Card>
